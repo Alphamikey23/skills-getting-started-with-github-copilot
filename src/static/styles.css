@@ -142,3 +142,93 @@ footer {
   padding: 20px;
   color: #666;
 }
+
+/* Participants styling */
+.participants {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed #e0e0e0;
+  color: #404040;
+  font-size: 14px;
+}
+
+.participants h5 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: #1a237e;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.participants-count {
+  background: #e8eaef;
+  color: #1a237e;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.participants-list {
+  /* hide native list bullets so we can use custom item layout */
+  list-style: none;
+  margin-left: 0;
+  margin-top: 6px;
+  display: block;
+  padding-left: 0;
+}
+
+.participants-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+/* Small delete icon next to participant to unregister */
+.participant-delete {
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid transparent;
+  color: #c62828;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.participant-delete:hover {
+  background-color: rgba(198,40,40,0.06);
+}
+
+/* small circular "avatar" showing initial */
+.participant-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3949ab, #1a237e);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 13px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+
+/* full name/email text next to badge */
+.participant-name {
+  color: #333;
+  font-size: 13px;
+  word-break: break-word;
+}
+
+/* Empty state */
+.participants-empty {
+  color: #777;
+  font-style: italic;
+  margin-top: 6px;
+}
