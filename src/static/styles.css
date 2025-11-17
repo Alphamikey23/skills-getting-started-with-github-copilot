@@ -171,8 +171,9 @@ footer {
 }
 
 .participants-list {
-  list-style: disc;
-  margin-left: 20px;
+  /* hide native list bullets so we can use custom item layout */
+  list-style: none;
+  margin-left: 0;
   margin-top: 6px;
   display: block;
   padding-left: 0;
@@ -184,6 +185,23 @@ footer {
   gap: 8px;
   margin-bottom: 6px;
   line-height: 1.4;
+}
+
+/* Small delete icon next to participant to unregister */
+.participant-delete {
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid transparent;
+  color: #c62828;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.participant-delete:hover {
+  background-color: rgba(198,40,40,0.06);
 }
 
 /* small circular "avatar" showing initial */

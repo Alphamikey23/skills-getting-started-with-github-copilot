@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
               return `<li title="${p}">
                         <span class="participant-badge">${initial}</span>
                         <span class="participant-name">${label}</span>
+                        <button class="participant-delete" data-email="${p}" data-activity="${name}" title="Unregister ${label}">✖</button>
                       </li>`;
             })
             .join("");
@@ -55,6 +56,47 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
 
         activitiesList.appendChild(activityCard);
+
+        // add handlers for delete buttons that unregister a participant
+        activityCard.querySelectorAll(".participant-delete").forEach((btn) => {
+          btn.addEventListener("click", async (e) => {
+            e.preventDefault();
+            const email = btn.dataset.email;
+            const activity = btn.dataset.activity;
+
+            if (!confirm(`Unregister ${email} from ${activity}?`)) return;
+
+            try {
+              const res = await fetch(
+                `/activities/${encodeURIComponent(activity)}/unregister?email=${encodeURIComponent(email)}`,
+                { method: "DELETE" }
+              );
+              const result = await res.json();
+
+              if (res.ok) {
+                messageDiv.textContent = result.message;
+                messageDiv.className = "success";
+                // refresh list
+                fetchActivities();
+              } else {
+                messageDiv.textContent = result.detail || "An error occurred";
+                messageDiv.className = "error";
+              }
+
+              messageDiv.classList.remove("hidden");
+
+              setTimeout(() => {
+                messageDiv.classList.add("hidden");
+              }, 4000);
+            } catch (err) {
+              console.error("Error unregistering participant:", err);
+              messageDiv.textContent = "Failed to unregister participant.";
+              messageDiv.className = "error";
+              messageDiv.classList.remove("hidden");
+              setTimeout(() => messageDiv.classList.add("hidden"), 4000);
+            }
+          });
+        });
 
         // Add option to select dropdown
         const option = document.createElement("option");
